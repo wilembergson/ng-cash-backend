@@ -1,4 +1,5 @@
 import Joi from "joi"
+
 import { UserInsertBody } from "../repository/userRepository"
 
 export const userSchema = Joi.object<UserInsertBody>({
