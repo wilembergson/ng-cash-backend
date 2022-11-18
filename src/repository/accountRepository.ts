@@ -18,8 +18,20 @@ async function getAccount(id:number){
     })
 }
 
+async function updateBalance(id:number, balance:number){
+    return await prisma.accounts.update({
+        where:{
+            id
+        },
+        data:{
+            balance
+        }
+    })
+}
+
 const accountRepository = {
     create,
-    getAccount
+    getAccount,
+    updateBalance
 }
 export default accountRepository
