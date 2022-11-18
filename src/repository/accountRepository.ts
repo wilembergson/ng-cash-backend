@@ -10,7 +10,16 @@ async function create(body:AccountInsertBody){
     })
 }
 
+async function getAccount(id:number){
+    return await prisma.accounts.findFirst({
+        where:{
+            id
+        }
+    })
+}
+
 const accountRepository = {
-    create
+    create,
+    getAccount
 }
 export default accountRepository
