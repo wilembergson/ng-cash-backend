@@ -30,7 +30,7 @@ model Users{
 model Transactions{
   id Int @id @default(autoincrement())
   debitedAccountId Int
-  creditedAccountId Int @unique
+  creditedAccountId Int
   creditedAccount Accounts @relation("creditedAccount",fields: [creditedAccountId], references: [id])
   debitedAccount Accounts @relation("debitedAccount", fields: [debitedAccountId], references: [id])
   value Float
