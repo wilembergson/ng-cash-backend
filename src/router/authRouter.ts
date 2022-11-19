@@ -1,11 +1,11 @@
 import { Router } from "express"
 
 import { login } from "../controller/authController.js"
-import { schemaValidate } from "../middleware/schemaValidate.js"
+import { checkSchema } from "../middleware/checkSchema.js"
 import { loginSchema } from "../schemas/loginSchema.js"
 
 const authRouter = Router()
 
-authRouter.get("/login", schemaValidate(loginSchema), login)
+authRouter.get("/login", checkSchema(loginSchema), login)
 
 export default authRouter

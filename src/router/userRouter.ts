@@ -1,11 +1,11 @@
 import { Router } from "express"
 
 import { createUser } from "../controller/userController.js"
-import { schemaValidate } from "../middleware/schemaValidate.js"
+import { checkSchema } from "../middleware/checkSchema.js"
 import { userSchema } from "../schemas/userSchema.js"
 
 const userRouter = Router()
 
-userRouter.post("/user", schemaValidate(userSchema), createUser)
+userRouter.post("/user", checkSchema(userSchema), createUser)
 
 export default userRouter

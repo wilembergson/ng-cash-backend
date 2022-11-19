@@ -12,7 +12,7 @@ export type TransferData = {
 async function getBalance(accountId:number){
     const account = await accountRepository.getAccount(accountId)
     if(!account) ErrorMessage(404, "Conta com ID inexistente.")
-    return { balance:account.balance }
+    return { balance:parseFloat((account.balance).toFixed(2)) }
 }
 
 async function toTransfer(payload:JwtPayload, transfer:TransferData){
