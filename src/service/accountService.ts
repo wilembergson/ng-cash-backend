@@ -1,4 +1,5 @@
 import { JwtPayload } from "jsonwebtoken"
+
 import accountRepository from "../repository/accountRepository.js"
 import transactionsRepository, { TransactionInsertData } from "../repository/transactionsRepository.js"
 import userRepository from "../repository/userRepository.js"
@@ -33,9 +34,10 @@ async function toTransfer(payload:JwtPayload, transfer:TransferData){
         createdAt: new Date
     }
     const trans = await transactionsRepository.create(transation)
-    if(!trans) ErrorMessage(404, "Não foi possível realizar a transação.")
+    if(!trans) ErrorMessage(401, "Não foi possível realizar a transação.")
     return successMessage("Tranferencia realizada com sucesso.")
 }
+
 async function checkBalence(accountId:number, amount:number){
     const { balance } = await getBalance(accountId)
     if(balance < amount) ErrorMessage(406, "Saldo insulficiente.")

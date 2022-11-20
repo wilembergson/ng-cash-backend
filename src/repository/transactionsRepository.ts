@@ -10,7 +10,19 @@ async function create(body:TransactionInsertData){
     })
 }
 
+async function getTransactions(accountId:number){
+    return await prisma.transactions.findMany({
+        where:{
+            OR:[
+                { creditedAccountId:accountId },
+                { debitedAccountId:accountId }
+            ]
+        },
+    })
+}
+
 const transactionsRepository = {
-    create
+    create,
+    getTransactions
 }
 export default transactionsRepository
