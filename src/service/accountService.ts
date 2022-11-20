@@ -4,7 +4,7 @@ import accountRepository from "../repository/accountRepository.js"
 import transactionsRepository, { TransactionInsertData } from "../repository/transactionsRepository.js"
 import userRepository from "../repository/userRepository.js"
 import ErrorMessage from "../utils/errorMessage.js"
-import successMessage from "../utils/successMessage.js"
+import warnningMessage from "../utils/warnningMessage.js"
 
 export type TransferData = {
     transferToName:string,
@@ -35,7 +35,7 @@ async function toTransfer(payload:JwtPayload, transfer:TransferData){
     }
     const trans = await transactionsRepository.create(transation)
     if(!trans) ErrorMessage(401, "Não foi possível realizar a transação.")
-    return successMessage("Tranferencia realizada com sucesso.")
+    return warnningMessage("Tranferencia realizada com sucesso.")
 }
 
 async function checkBalence(accountId:number, amount:number){

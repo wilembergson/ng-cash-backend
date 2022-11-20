@@ -3,7 +3,7 @@ import bcrypt from "bcrypt"
 import userRepository, { UserInsertBody } from "../repository/userRepository.js"
 import accountRepository from "../repository/accountRepository.js"
 import ErrorMessage from "../utils/errorMessage.js"
-import successMessage from "../utils/successMessage.js"
+import warnningMessage from "../utils/warnningMessage.js"
 import { Users } from "@prisma/client"
 
 async function create(user:UserInsertBody){
@@ -22,7 +22,7 @@ async function create(user:UserInsertBody){
     const finalUser:Users = {...savedUser, accountId:account.id}
     const updatedUser = await userRepository.update(finalUser)
     if(!updatedUser) ErrorMessage(409, "Não foi possível adicionar uma conta ao usuario criado.")
-    return successMessage("Usuário criado com sucesso!")
+    return warnningMessage("Usuário criado com sucesso!")
 }
 
 const userService = {
